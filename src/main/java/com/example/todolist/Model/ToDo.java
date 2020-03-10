@@ -1,6 +1,7 @@
 package com.example.todolist.Model;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 
 
 @Entity
@@ -12,14 +13,35 @@ public class ToDo {
     private String name;
     private Boolean status = false;
     private String description;
+    private Byte rank;
+    private LocalDateTime createDate;
+
+    public Byte getRank() {
+        return rank;
+    }
+
+    public void setRank(Byte rank) {
+        this.rank = rank;
+    }
+
+    public LocalDateTime getCreateDate() {
+        return createDate;
+    }
+
+    public void setCreateDate(LocalDateTime createDate) {
+        this.createDate = createDate;
+    }
 
     public ToDo() {
     }
 
-    public ToDo( String name, Boolean status, String description){
+    public ToDo( String name, Boolean status, String description, Byte rank, LocalDateTime createDate){
         this.name = name;
         this.status = status;
         this.description = description;
+        this.rank = rank;
+        this.createDate = createDate;
+
     }
     public Long getId() {
         return id;

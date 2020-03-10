@@ -40,4 +40,19 @@ public class ToDoServiceImpl implements TodoService {
             toDoRepository.delete(toDo.get());
         }
     }
+
+    @Override
+    public List<ToDo> findAllByNameContaining(String name) {
+        return toDoRepository.findAllByNameContaining(name);
+    }
+
+    @Override
+    public Iterable<ToDo> findOrOrderByCreateDate() {
+        return toDoRepository.findOrOrderByCreateDate();
+    }
+
+    @Override
+    public Iterable<ToDo> findOrOrderByRank() {
+        return toDoRepository.findOrOrderByRank();
+    }
 }

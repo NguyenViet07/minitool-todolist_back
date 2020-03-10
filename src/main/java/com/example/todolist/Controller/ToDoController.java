@@ -10,6 +10,10 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
 
 @RestController
 @CrossOrigin("*")
@@ -17,8 +21,11 @@ public class ToDoController {
     @Autowired
     private TodoService todoService;
     @GetMapping("/todos")
-    public ResponseEntity<Iterable<ToDo>>listToDo(){
-        Iterable<ToDo> toDos = todoService.findAll();
+    public ResponseEntity<Iterable<ToDo>>listToDo(@RequestParam("name") Optional<String>name){
+        List<ToDo> toDos = new ArrayList<>();
+        if (name.isPresent()){
+            toDos = todoService.findAllByNameContaining(name.get());
+        } else toDos = todoService.findAll();
         return new ResponseEntity<>(toDos, HttpStatus.OK);
     }
     @GetMapping("/todos/{id}")
@@ -31,6 +38,7 @@ public class ToDoController {
     }
     @PostMapping("/todos")
     public ResponseEntity<Iterable<ToDo>>createToDo(@RequestBody ToDo todo){
+        todo.setCreateDate(LocalDateTime.now());
         todoService.save(todo);
         Iterable<ToDo> toDos = todoService.findAll();
         return new ResponseEntity<>(toDos, HttpStatus.OK);
@@ -49,4 +57,15 @@ public class ToDoController {
         todoService.save(todo);
         return new ResponseEntity<>( HttpStatus.OK);
     }
+    @GetMapping("/todos/new")
+    public ResponseEntity<List<ToDo>> todoNew(){
+        List<ToDo> toDos = (List<ToDo>) todoService.findOrOrderByCreateDate();
+        return new ResponseEntity<>(toDos, HttpStatus.OK);
+    }
+    @GetMapping("todos/rank")
+    public ResponseEntity<List<ToDo>> todoRank(){
+        List<ToDo> toDos = (List<ToDo>) todoService.findOrOrderByRank();
+        return new ResponseEntity<>(toDos, HttpStatus.OK);
+    }
+
 }

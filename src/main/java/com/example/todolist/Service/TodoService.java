@@ -1,6 +1,7 @@
 package com.example.todolist.Service;
 
 import com.example.todolist.Model.ToDo;
+import com.sun.tools.javac.comp.Todo;
 
 import java.util.List;
 
@@ -11,5 +12,8 @@ public interface TodoService {
     ToDo findById(Long id);
     void save(ToDo todo);
     void delete(Long id);
+    List<ToDo> findAllByNameContaining(String name);
+    Iterable<ToDo> findOrOrderByCreateDate();
+    Iterable<ToDo> findOrOrderByRank();
 
 }
