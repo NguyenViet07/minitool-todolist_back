@@ -1,7 +1,6 @@
 package com.example.todolist.Service;
 
 import com.example.todolist.Model.ToDo;
-import com.sun.tools.javac.comp.Todo;
 
 import java.util.List;
 
@@ -15,5 +14,9 @@ public interface TodoService {
     List<ToDo> findAllByNameContaining(String name);
     Iterable<ToDo> findOrOrderByCreateDate();
     Iterable<ToDo> findOrOrderByRank();
+    Iterable<ToDo> findByRankEqualsLow();
+    Iterable<ToDo> findByRankEqualsMedium();
+    Iterable<ToDo> findByRankEqualsHigh();
+
 
 }

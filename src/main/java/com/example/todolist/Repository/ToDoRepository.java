@@ -14,5 +14,11 @@ public interface ToDoRepository extends JpaRepository<ToDo, Long> {
     Iterable<ToDo> findOrOrderByCreateDate();
     @Query("select s from ToDo s order by s.rank desc ")
     Iterable<ToDo> findOrOrderByRank();
+    @Query("select s from ToDo s where s.rank = -1 ")
+    Iterable<ToDo> findByRankEqualsLow();
+    @Query("select s from ToDo s where s.rank = 0 ")
+    Iterable<ToDo> findByRankEqualsMedium();
+    @Query("select s from ToDo s where s.rank = 1 ")
+    Iterable<ToDo> findByRankEqualsHigh();
 
 }

@@ -67,5 +67,20 @@ public class ToDoController {
         List<ToDo> toDos = (List<ToDo>) todoService.findOrOrderByRank();
         return new ResponseEntity<>(toDos, HttpStatus.OK);
     }
+    @GetMapping("todos/low")
+    public ResponseEntity<List<ToDo>> todoLow(){
+        List<ToDo> toDos = (List<ToDo>) todoService.findByRankEqualsLow();
+        return new ResponseEntity<>(toDos, HttpStatus.OK);
+    }
+    @GetMapping("todos/medium")
+    public ResponseEntity<List<ToDo>> todoMedium(){
+        List<ToDo> toDos = (List<ToDo>) todoService.findByRankEqualsMedium();
+        return new ResponseEntity<>(toDos, HttpStatus.OK);
+    }
+    @GetMapping("todos/hight")
+    public ResponseEntity<List<ToDo>> todoHight(){
+        List<ToDo> toDos = (List<ToDo>) todoService.findByRankEqualsHigh();
+        return new ResponseEntity<>(toDos, HttpStatus.OK);
+    }
 
 }

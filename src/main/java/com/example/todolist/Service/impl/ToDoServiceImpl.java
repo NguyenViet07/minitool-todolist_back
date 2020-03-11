@@ -55,4 +55,19 @@ public class ToDoServiceImpl implements TodoService {
     public Iterable<ToDo> findOrOrderByRank() {
         return toDoRepository.findOrOrderByRank();
     }
+
+    @Override
+    public Iterable<ToDo> findByRankEqualsLow() {
+        return toDoRepository.findByRankEqualsLow();
+    }
+
+    @Override
+    public Iterable<ToDo> findByRankEqualsMedium() {
+        return toDoRepository.findByRankEqualsMedium();
+    }
+
+    @Override
+    public Iterable<ToDo> findByRankEqualsHigh() {
+        return toDoRepository.findByRankEqualsHigh();
+    }
 }
